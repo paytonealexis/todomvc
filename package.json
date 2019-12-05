@@ -20,13 +20,18 @@
     "cy:run:record": "npm run cy:run -- --record",
     "test": "run-p --race server cy:run",
     "test:record": "start-server-and-test server http://localhost:8000 cy:run:record",
-    "test:all": "node tests/cya.js"
+    "test:all": "node tests/cya.js",
+    "start": "http-server -s -p 8000",
+    "presnapshots": "http-server -s -p 8000 &",
+    "snapshots": "percy exec -- node snapshots.js",
+    "postsnapshots": "pkill -f 'http-server -s -p 8000'"
   },
   "dependencies": {
     "express": "^4.10.0"
   },
   "devDependencies": {
     "@bahmutov/print-env": "^1.0.1",
+    "@percy/script": "^1.0.0",
     "bluebird": "^3.5.1",
     "chalk": "^2.3.0",
     "console.table": "^0.9.1",
@@ -46,6 +51,7 @@
     "gulp-uncss": "^0.5.0",
     "gulp-useref": "^1.0.2",
     "gulp-vulcanize": "^1.0.0",
+    "http-server": "0.11.1",
     "jshint-stylish": "^1.0.0",
     "minimist": "^1.2.0",
     "npm-run-all": "^4.1.2",
